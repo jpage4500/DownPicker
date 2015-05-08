@@ -15,7 +15,7 @@
 {
     UIPickerView* pickerView;
     IBOutlet UITextField* textField;
-    NSMutableArray* dataArray;
+    NSArray* dataArray;
     NSString* placeholder;
     NSString* placeholderWhileSelecting;
 	NSString* toolbarDoneButtonText;
@@ -25,9 +25,9 @@
 @property (nonatomic, readonly) NSString* text;
 
 -(id)initWithTextField:(UITextField *)tf;
--(id)initWithTextField:(UITextField *)tf withData:(NSMutableArray*) data;
+-(id)initWithTextField:(UITextField *)tf withData:(NSArray*) data;
 -(void) setArrowImage:(UIImage*)image;
--(void) setData:(NSMutableArray*) data;
+-(void) setData:(NSArray*) data;
 -(void) setPlaceholder:(NSString*)str;
 -(void) setPlaceholderWhileSelecting:(NSString*)str;
 -(void) setToolbarDoneButtonText:(NSString*)str;

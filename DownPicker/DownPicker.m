@@ -21,7 +21,7 @@
     return [self initWithTextField:tf withData:nil];
 }
 
--(id)initWithTextField:(UITextField *)tf withData:(NSMutableArray*) data
+-(id)initWithTextField:(UITextField *)tf withData:(NSArray*) data
 {
     self = [super init];
     if (self) {
@@ -72,7 +72,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self->textField.text = [dataArray objectAtIndex:row];
+    self->textField.text = dataArray[(NSUInteger)row];
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
@@ -82,14 +82,14 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    return [dataArray objectAtIndex:row];
+    return dataArray[(NSUInteger)row];
 }
 
 -(void)doneClicked:(id) sender
 {
     [textField resignFirstResponder]; //hides the pickerView
     if (self->textField.text.length == 0) {
-        self->textField.text = [dataArray objectAtIndex:0];
+        self->textField.text = dataArray[0];
     }
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
@@ -124,9 +124,8 @@
                                    style:UIBarButtonItemStyleDone
                                    target:self
                                    action:@selector(doneClicked:)];
-    
-    
-    [toolbar setItems:[NSArray arrayWithObjects:flexibleSpaceLeft, doneButton, nil]];
+
+    [toolbar setItems:@[flexibleSpaceLeft, doneButton]];
 
     //custom input view
     textField.inputView = pickerView;
@@ -145,7 +144,7 @@
 }
 
 // Utility Methods
--(void) setData:(NSMutableArray*) data
+-(void) setData:(NSArray*) data
 {
     dataArray = data;
 }
